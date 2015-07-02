@@ -1,0 +1,7 @@
+SDS Experimental Organic Form Synthesis Software
+This document logs the major changes between versions.
+
+001 ALPHA 
+23 February 2010
+
+The initial release.

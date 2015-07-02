@@ -1,0 +1,54 @@
+# Copyright 2010  Bart Veldstra
+# 
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 3. The name of the author may not be used to endorse or promote products 
+#    derived from this software without specific prior written permission.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+# IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+# OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+# IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+# NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+# THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+from os import path
+import sys
+
+utils = ['basicsim.cpp', 'siminfo.cpp', 'tetgen2simconfig.cpp', 'tetgen_wrapper.cpp']
+tests = ['bstreamtest.cpp', 'staticsegmenttest.cpp', 'meshops_gethulltest.cpp', 'transform_complexify_test.cpp', 'tetrahedralise_test.cpp']
+
+libroot = '../..'
+libpaths = ['SDS', 'SDSMath', 'SDSCommon']
+libs = ['SDS', 'SDSMath', 'SDSCommon']
+    
+include_path = map(lambda x: path.join(libroot, x, 'include'), libpaths) 
+lib_path = map(lambda x: path.join(libroot, x, 'Release'), libpaths) 
+
+Import('env')
+util_env = env.Clone() #CCFLAGS='-g')
+util_env.Append(CPPPATH=include_path)
+util_env.Append(LIBS=libs)
+util_env.Append(LIBPATH=lib_path)
+
+for util in utils:
+    util_file = util_env.Program(path.join('sds-utils', util))
+    util_env.Install('bin', util_file)
+for test in tests:
+    test_file = util_env.Program(path.join('sds-tests', test))
+    util_env.Install('bin', test_file)
+    
+Import('shared')
+for s in shared:
+    util_env.Install('bin', s)

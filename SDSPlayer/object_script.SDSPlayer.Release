@@ -1,0 +1,12 @@
+INPUT(
+./release\meshdrawer.o
+./release\viewer.o
+./release\main.o
+./release\organismdrawer.o
+./release\sdsplayer.o
+./release\timelinewidget.o
+./release\moc_sdsplayer.o
+./release\moc_timelinewidget.o
+./release\moc_viewer.o
+./release\qrc_res.o
+);

@@ -1,0 +1,15 @@
+SDSCommon packs all the external dependencies of SDSMath and SDS into one static lib.
+BP 13.10.09
+
+
+notes to self:
+
+Triangulate:
+   free to use for non commercial purposes.
+
+tetgen: must make source available (can just link to the website I guess, as source is not modified)
+        commercial use requires arrangment with author
+
+boost: Subject to the Boost Software License, Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+
+geometry, libconfig: lgpl, should dyn link

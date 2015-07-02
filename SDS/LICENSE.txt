@@ -1,0 +1,28 @@
+SDS Experimental Organic Form Synthesis Software
+
+DISCLAIMER - AGREEMENT
+
+Users of SDS must accept this disclaimer of warranty:
+
+"This software is provided "as-is", without any express or implied warranty. In
+no event shall the author be held liable for any damages arising from the use
+of this software."
+
+SDS is experimental software and is provided at no charge for the sake of testing 
+and evaluation purposes. You are allowed to copy and redistribute it, as long as 
+this notice appears with it. You may not reverse engineer the software.
+
+You may not create derivative works based on this software, unless a written 
+agreement has been made with the author.
+
+Running this software constitutes agreement with the terms of the licence.
+
+This software is protected by copyright laws and international treaties.
+
+COMMERCIAL USE
+
+SDS cannot be used for commercial purposes, either by selling the geometric models 
+created by the software, or by using the software to produce commercial works, such as 
+animations or stills, without written permission from the author.
+ 
+Copyright (c) 2007 - 2010 Benjamin Porter. All rights reserved.

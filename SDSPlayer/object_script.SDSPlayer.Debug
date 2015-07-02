@@ -1,0 +1,12 @@
+INPUT(
+./debug\meshdrawer.o
+./debug\viewer.o
+./debug\main.o
+./debug\organismdrawer.o
+./debug\sdsplayer.o
+./debug\timelinewidget.o
+./debug\moc_sdsplayer.o
+./debug\moc_timelinewidget.o
+./debug\moc_viewer.o
+./debug\qrc_res.o
+);
