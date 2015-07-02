@@ -1,0 +1,20 @@
+<RCC>
+  <qresource prefix="icons" >
+    <file>icons/control_record.png</file>
+    <file>icons/smooth.png</file>
+    <file>icons/chart_bar.png</file>
+    <file>icons/magnifier.png</file>
+    <file>icons/eye.png</file>
+    <file>icons/pencil.png</file>
+    <file>icons/cells.png</file>
+    <file>icons/surface.png</file>
+    <file>icons/wireframe.png</file>
+    <file>icons/control_pause.png</file>
+    <file>icons/control_play.png</file>
+    <file>icons/control_start.png</file>
+    <file>icons/control_stop.png</file>
+    <file>icons/flag_blue.png</file>
+    <file>icons/flag_red.png</file>
+    <file>icons/information.png</file>
+  </qresource>
+</RCC>

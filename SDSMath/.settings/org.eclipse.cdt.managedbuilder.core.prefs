@@ -1,0 +1,4 @@
+#Tue Oct 13 11:32:59 EST 2009
+eclipse.preferences.version=1
+environment/buildEnvironmentInclude/cdt.managedbuild.config.gnu.mingw.lib.debug.71075397=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<environment append\="true" appendContributed\="true">\r\n<variable name\="CPATH" operation\="remove"/>\r\n<variable name\="C_INCLUDE_PATH" operation\="remove"/>\r\n<variable name\="CPLUS_INCLUDE_PATH" operation\="remove"/>\r\n</environment>\r\n
+environment/buildEnvironmentInclude/cdt.managedbuild.config.gnu.mingw.lib.release.1656451008=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<environment append\="true" appendContributed\="true">\r\n<variable name\="CPATH" operation\="remove"/>\r\n<variable name\="C_INCLUDE_PATH" operation\="remove"/>\r\n<variable name\="CPLUS_INCLUDE_PATH" operation\="remove"/>\r\n</environment>\r\n

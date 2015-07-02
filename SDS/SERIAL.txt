@@ -1,0 +1,162 @@
+Serialisation in SDS
+BP oct 2009
+
+Some notes regarding the serialisation of simulation, meshes, etc.
+These notes outlines a new design for simulation and object serialisation. 
+It will render the old method obsolete, and hence old files will not be able to be read.
+
+This method has the benefit of being documented better, and future proofed through the use of named segments and segment identifiers.
+
+========================
+Header File Specs
+========================
+Some of the simulation data is specified within a plain text file.
+
+Additionally the _structure_ of each simulation frame is specified within that file. This provides a more flexible
+simulation output format.
+
+----------
+Simulation
+----------
+See example.sim.cfg
+
+===========================
+Binary Data Structure Specs
+===========================
+Some of the data is best handled as compact binary streams.
+The following data structures detail the structure of some of these. 
+
+---------------------------
+Simulation Binary Data File
+---------------------------
+uint MAGICNUMBER	// always = 260581 (BP's birthday) (we can use this to determine endianness)
+uint VERSION		// this will change if the data format dramatically changes (which it shouldn't)
+// note we don't store the number of frames as the system may crash before finishing
+// you can easily count them though.
+Frame1
+Frame2
+Frame3
+...
+
+-----
+Frame
+-----
+// frame header
+uint sizeOfFrameInBytes // size of the entire frame (_not_ including the header)
+uint frameNumber 		// frames will always be in order, so use this to sanity check
+double currentSimulationTime
+uint numberOfStepsTaken // not equal to frameNumber as we may only output one frame per 10 steps
+// frame data (segments)
+Segment1
+Segment2
+...
+SegmentN 
+
+-------
+Segment
+-------
+// A segment is a general chunk of binary data, e.g., a mesh. 
+// The order and type of the segments are given in the simulation .xml description.
+// This way we can store arbitrary bits of data in the frames, and not need to worry about breaking older code or 
+// invalidating older simulations.
+
+ulong sizeInBytesOfThisSegment
+segmentdata
+
+--------
+Organism
+--------
+// mesh_id themesh // mesh then provides the vertex->id map needed to identify vertices with cells
+uint numberOfCells
+forall cells c:
+	uint index(c.v)
+	double c.r
+	double c.drdt	
+
+----------------------------
+Process Model
+----------------------------
+uint numberOfCells // must equal organism->numcells
+forall cells c:
+	c.processinfo // this is defined by the actual process model used	
+	
+----------------
+Mesh (Full Mesh)
+----------------
+// contains all the data of a mesh, has redundancy (and hence is maybe too big?)
+// uint numberOfBytes // (size of segment) TODO: not necessary with new serialisation methods
+uint numverts // counts of elements 
+uint numedges
+// uint numfaces // removed, always = numouterfaces
+uint numtetras
+uint numouterfaces
+AABB bounds
+forall vertices v:
+	vec v.mX, v.mOldX, v.mF
+	double mMass
+	bool tag
+	char isSurface // 0 == not, 1 == is
+	if isSurface:
+		size numFaceNeighbours
+		forall face neighbours f:
+			uint index(f)
+	size numNeighbours
+	forall neighbours n:
+		uint index(n)
+forall edges e:
+	uint index(e.v(0)), index(e.v(1))
+	double e.rest
+	double e.kD
+forall faces f:
+	uint index(f.v(0..2))
+	double f.rest
+	// bool f.outer // removed: no longer necessary as all faces are outer faces	
+forall tetras t:
+	uint index(t.v(0..3))
+	uint index(t.n(0..3))
+	double t.kD
+	bool t.isOuter
+	double t.rest
+	bool t.intersected // collision info...
+
+-----------
+Mesh (Bare)
+-----------
+// contains the bare minimum of elements required to fully reconstruct a mesh object
+uint numverts // counts of elements 
+uint numedges
+uint numouterfaces // num outer faces
+uint numtetras
+AABB bounds
+forall vertices v:
+	vec v.mX, v.mOldX, v.mF
+	double mMass
+forall edges e:
+	uint index(e.v(0)), index(e.v(1))
+	double e.rest
+	double e.kD
+forall faces f:
+	uint index(f.v(0..2))
+	double f.rest
+forall tetras t:
+	uint index(t.v(0..3))
+	int index(t.n(0..3)) // -1 implies no neighbour
+	double t.kD
+	double t.rest
+
+----------------------------------
+TexCoords (Example Custom Segment)
+----------------------------------
+uint numberOfCoords
+uint vindex1 
+double u, v
+uint vindex2 
+double u, v
+...
+
+// then, for example we can add new u,v fields to vertex and
+// add the TexCoords serialisation module to read/write the data
+// and also adjust the transformations to handle u,v transformations
+// all without destroying compatbility of old simulation data files
+
+	

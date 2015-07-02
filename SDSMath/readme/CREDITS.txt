@@ -1,0 +1,14 @@
+
+
+
+
+
+Roots3And4.c
+This file is part of the Graphics Gems series which is freely available at http://tog.acm.org/resources/GraphicsGems/.
+Copyright (C) 1990 Jochen Schwarze
+
+
+
+
+
+

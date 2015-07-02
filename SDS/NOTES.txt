@@ -1,0 +1,55 @@
+Simplicial Developmental System 
+Notes and stuffs
+
+SDS is experimental software. It is free for non-commercial use. If
+you are a non-commercial entity (eg. an individual) and you are not
+charging for the artefacts (models or animations) you make with SDS, and the
+artefacts have no other commercial purpose, then you can use SDS for
+free. Otherwise, you will need to obtain a commercial license through an
+agreement with the author.
+
+
+Compilation Switches
+====================
+
+Defines:
+
+DEBUG_LOG
+	System generates a log as default.log. Contains transformation details and other bits and pieces. Only readable by ben! 
+
+DEBUG_BINARY
+	System dumps a LOT of information about binary io to stdout.
+
+DEBUG_MEMORY
+	System outputs constructor and destructor calls for some classes
+	
+Physical Model
+==============
+
+We use TPS to simulate the mechanical aspects of the growing shape. 
+ 
+Assumptions
+-----------
+Density = 1 -- and therefore volume = mass
+Mass of a cell = mass of a point particle at the center
+Cells are perfectly spherical
+The rest lengths of edges and volumes are determined by the sizes of the cells and WILL be changed DYNAMICALLY
+
+
+TODO
+----
+
+* What other modules need to be notified if the mesh is modified?
+- Collision
+--- it may need to refine the coarseness of its space discretisation
+
+* streamlined (Release) version of transformation code
+
+* Set up license and dynamically link to external libraries where necessary
+ 
+* Serialise oworld object, containing whatever it needs to serialise..?
+
+NOTES
+-----
+
+

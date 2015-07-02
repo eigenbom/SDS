@@ -1,0 +1,7 @@
+howtousetetgen.txt
+BP170209
+
+We use tetgen to create tetrahedral meshes for use with TPS.
+tetgen.exe -pq1.2en
+
+then run normalisemesh.py on the result, so it fits in the world bounds
